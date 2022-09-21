@@ -1,0 +1,16 @@
+@charset "ISO-8859-1";
+form{
+	margin: auto;
+	width: 30%;
+	height:30%;
+	}
+button{
+	width: 10%;
+	height:10%;
+	}
+#result{
+	 margin: auto;
+	}
+[type="text"]{
+	text-align: right;
+	}

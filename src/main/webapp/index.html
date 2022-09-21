@@ -2,35 +2,43 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="css.css" />
 <title>Calculadora</title>
 </head>
 <body>
-	<p>Bienvenido a esta calculadora básica</p>
 	<form action=calculator.jsp>
-	<div>
-	<form>
-		<p><button type="submit" value="7">7</button>
-		<button type="submit" value="8">8</button>
-		<button type="submit" value="9">9</button>
-		<button type="submit" name="divide">/</button>
-		</p>
-		<p><button type="submit" value="4">4</button>
-		<button type="submit" value="5">5</button>
-		<button type="submit" value="6">6</button>
-		<button type="submit" name="multiply">x</button>
-		</p>
-		<p><button type="submit" value="1">1</button>
-		<button type="submit" value="2">2</button>
-		<button type="submit" value="3">3</button>
-		<button type="submit" name="subtract">-</button>
-		</p>
-		<p><button type="submit" value="0">0</button>
-		<button type="submit" name=",">,</button>
-		<button type="submit" name="=">=</button>
-		<button type="submit" name="add">+</button>
+		<p>Primer número: <input type="text" name="x"></p>
+		<p>Segundo número: <input type="text" name="y"></p>
+		<p hidden id="result"></p>
+		<p><button type="submit" name="suma" value="+">+</button>
+		<button type="submit" name="resta" value="-">-</button>
+		<button type="submit" name="multiplicacion" value="*">x</button>
+		<button type="submit" name="division" value="/">/</button>
 		</p>
 	</form>
-	<p></p>
-	</div>
+		<p id="result"></p>
+		<!--  Opcion con numeros que no se hacer
+		<p><button type="button" name="7" value="7" onclick="getElementById('screen').innerHTML=value">7</button>
+		<button type="button" name="8" value="8" onclick="getElementById('screen').innerHTML=value">8</button>
+		<button type="button" name="9" value="9" onclick="getElementById('screen').innerHTML=value">9</button>
+		<button type="button" name="operator" value="/" onclick="getElementById('screen').innerHTML=value">/</button>
+		</p>
+		<p><button type="button" name="4" value="4" onclick="getElementById('screen').innerHTML=value">4</button>
+		<button type="button" name="5" value="5" onclick="getElementById('screen').innerHTML=value">5</button>
+		<button type="button" name="6" value="6" onclick="getElementById('screen').innerHTML=value">6</button>
+		<button type="button" name="operator" value="*" onclick="getElementById('screen').innerHTML=value">x</button>
+		</p>
+		<p><button type="button" name="1" value="1" onclick="getElementById('screen').innerHTML=value">1</button>
+		<button type="button" name="2" value="2" onclick="getElementById('screen').innerHTML=value">2</button>
+		<button type="button" name="3" value="3" onclick="getElementById('screen').innerHTML=value">3</button>
+		<button type="button" name="operator" value="-" onclick="getElementById('screen').innerHTML=value">-</button>
+		</p>
+		<p><button type="button" name="7" value="0" onclick="getElementById('screen').innerHTML=value">0</button>
+		<button type="button" name="," onclick="getElementById('screen').innerHTML=value">,</button>
+		<button type="submit" name="=" onclick="getElementById('screen').innerHTML=value">=</button>
+		<button type="button" name="operator" value="+" onclick="getElementById('screen').innerHTML=value">+</button>
+		</p>
+		 <%if (request.getParameter("operator").equals("+")) %>
+		-->
 </body>
 </html>
