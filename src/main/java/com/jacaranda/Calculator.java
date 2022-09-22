@@ -3,43 +3,43 @@ package com.jacaranda;
 import java.util.Objects;
 
 public class Calculator {
-	private float x;
-	private float y;
+	private double x;
+	private double y;
 	
-	public Calculator(float x, float y) {
+	public Calculator(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
 
-	public float getX() {
+	public double getX() {
 		return x;
 	}
-	public void setX(float x) {
+	public void setX(double x) {
 		this.x = x;
 	}
 
-	public float getY() {
+	public double getY() {
 		return y;
 	}
-	public void setY(float y) {
+	public void setY(double y) {
 		this.y = y;
 	}
 	
-	public float add() {
+	public double add() {
 		return x + y;
 	}
 	
-	public float subtract() {
+	public double subtract() {
 		return x - y;
 	}
 	
-	public float multiply() {
+	public double multiply() {
 		return x * y;
 	}
 	
-	public float divide() throws CalculatorException {
+	public double divide() throws CalculatorException {
 		if(x==0 || y==0) {
-			throw new CalculatorException();
+			throw new CalculatorException("No se puede dividir entre 0");
 		}else {
 			return x / y;
 		}
@@ -59,8 +59,8 @@ public class Calculator {
 		if (getClass() != obj.getClass())
 			return false;
 		Calculator other = (Calculator) obj;
-		return Float.floatToIntBits(x) == Float.floatToIntBits(other.x)
-				&& Float.floatToIntBits(y) == Float.floatToIntBits(other.y);
+		return Double.doubleToLongBits(x) == Double.doubleToLongBits(other.x)
+				&& Double.doubleToLongBits(y) == Double.doubleToLongBits(other.y);
 	}
 
 	@Override

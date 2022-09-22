@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="css.css" />
+<title>Calculadora</title>
+</head>
+<body>
+	<form action=calculator.jsp>
+		<p>Primer número: <input type="text" name="x"></p>
+		<p>Segundo número: <input type="text" name="y"></p>
+		<p hidden id="result"></p>
+		<p><button type="submit" name="operator" value="+">+</button>
+		<button type="submit" name="operator" value="-">-</button>
+		<button type="submit" name="operator" value="*">x</button>
+		<button type="submit" name="operator" value="/">/</button>
+		</p>
+	</form>
+		<p id="exit"></p>
+		<!-- 
+		 <%if (request.getParameter("operator").equals("+")) %>
+		-->
+</body>
+</html>
