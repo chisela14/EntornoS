@@ -23,11 +23,11 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="operation">Operación: </label>
 				<div class="col-md-4">
-					<select id="operation" name="operation" class="form-control">
-						<option value="+">+</option>
-						<option value="-">-</option>
-						<option value="*">x</option>
-						<option value="/">/</option>
+					<select id="operation" name="operation" class="form-control" th:field="${operator}">
+						<option th:value="+">+</option>
+						<option th:value="-">-</option>
+						<option th:value="*">x</option>
+						<option th:value="/">/</option>
 					</select>
 				</div>
 			</div>
