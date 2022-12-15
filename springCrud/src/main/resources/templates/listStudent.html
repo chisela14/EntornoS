@@ -33,15 +33,9 @@
 						<td th:text="${student.lastName}"></td>
 						<td th:text="${student.age}"></td>
 						<td>
-							<form class="form-horizontal" action="#" th:action="@{/student/deleteSubmit}" 
-									th:object="${student}" method="post">
-									<div class="form-group">
-										<label class="col-md-4 control-label" for="send"></label>
-										<div class="col-md-4">
-											<button id="send" name="send" class="btn btn-primary">Borrar</button>
-										</div>
-									</div>
-							</form>
+							<a th:href="@{'/student/delete'(name=${student.name}, lastName=${student.lastName})}" >
+								<button id="send" name="send" class="btn btn-primary">Borrar</button>
+							</a>
 						</td>
 					</tr>
 				</tbody>

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jacaranda.crud.model.Student;
 import com.jacaranda.crud.service.StudentService;
@@ -35,15 +36,19 @@ public class StudentController {
 		return "redirect:/student/list";
 	}
 	
+	//no se puede inyectar el objeto directamente
 	@GetMapping("student/delete")
-	public String deleteStudent(Model model) {
-		Student student = new Student();
+	public String deleteStudent(Model model,
+			@RequestParam(name="name", required=false, defaultValue="") String name,
+			@RequestParam(name="lastName", required=false, defaultValue="") String lastName) {
+		
+		Student student = repositorio.getStudent(name, lastName);
 		model.addAttribute("studentDel", student);
 		return "deleteStudent";
 	}
 	
 	@PostMapping("student/deleteSubmit")
-	public String deleteSubmit(@ModelAttribute("student") Student student) {
+	public String deleteSubmit(@ModelAttribute("studentDel") Student student) {
 		repositorio.removeStudent(student);
 		return "redirect:/student/list";
 	}
