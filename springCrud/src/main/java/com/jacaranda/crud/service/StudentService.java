@@ -34,21 +34,6 @@ public class StudentService {
 		this.studentList.remove(s);
 	}
 
-	public Boolean get(String nombre, String apellido, int edad) {
-		Boolean encontrado = false;
-		Student resultado = null;
-		
-		Iterator<Student> itr = this.studentList.iterator();
-		while(itr.hasNext() && !encontrado) {
-			resultado = itr.next();
-			if(resultado.getName().equals(nombre) && resultado.getLastName().equals(apellido)) {
-				resultado.setAge(edad);
-				encontrado = true;
-			}
-		}
-		
-		return encontrado;
-	}
 	public Student getStudent(String nombre, String apellido) {
 		Boolean encontrado = false;
 		Student resultado = null;
@@ -62,5 +47,21 @@ public class StudentService {
 		}
 		
 		return resultado;
+	}
+	
+	public boolean updateStudent(String nombre, String apellido, int edad) {
+		boolean encontrado = false;
+		Student resultado = null;
+		
+		Iterator<Student> itr = this.studentList.iterator();
+		while(itr.hasNext() && !encontrado) {
+			resultado = itr.next();
+			if(resultado.getName().equals(nombre) && resultado.getLastName().equals(apellido)) {
+				resultado.setAge(edad);
+				encontrado = true;
+			}
+		}
+		
+		return encontrado;
 	}
 }

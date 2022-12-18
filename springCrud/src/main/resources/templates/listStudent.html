@@ -18,6 +18,7 @@
 	<div class="container">
 		<div class="starter-template">
 			<h1>Listado de Estudiantes</h1>
+			<div align="right"><a href="addStudent"><button type="button" class="btn btn-dark">Añadir</button></a></div>
 			<table class="table">
 				<thead>
 					<tr>
@@ -35,6 +36,9 @@
 						<td>
 							<a th:href="@{'/student/delete'(name=${student.name}, lastName=${student.lastName})}" >
 								<button id="send" name="send" class="btn btn-primary">Borrar</button>
+							</a>
+							<a th:href="@{'/student/edit'(name=${student.name}, lastName=${student.lastName})}" >
+								<button id="send" name="send" class="btn btn-primary">Editar</button>
 							</a>
 						</td>
 					</tr>
