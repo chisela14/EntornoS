@@ -37,6 +37,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency> <!--dependencia para validaciones-->
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency> <!--dependencia login seguro-->
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
