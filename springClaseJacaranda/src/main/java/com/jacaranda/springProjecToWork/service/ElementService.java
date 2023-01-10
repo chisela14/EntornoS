@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.jacaranda.springProjecToWork.model.Element;
@@ -18,8 +19,8 @@ public class ElementService {
 		return repository.save(s);
 	}
 
-	public Page<Element> findAll(int pageNum, int pageSize){
-		Pageable pageable = PageRequest.of(pageNum -1, pageSize);
+	public Page<Element> findAll(int pageNum, int pageSize, String sortField){
+		Pageable pageable = PageRequest.of(pageNum -1, pageSize, Sort.by(sortField).ascending());
 		return repository.findAll(pageable);
 	}
 

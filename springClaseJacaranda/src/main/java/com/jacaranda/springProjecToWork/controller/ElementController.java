@@ -23,13 +23,15 @@ public class ElementController {
 
 	@GetMapping({"/","listElement"})
 	public String listElement(Model model, @RequestParam("pageNumber")Optional<Integer> pageNumber,
-	@RequestParam("sizeNumber") Optional<Integer> sizeNumber) {
+	@RequestParam("sizeNumber") Optional<Integer> sizeNumber,
+	@RequestParam("sortField") Optional<String> sortField) {
 		
-		Page<Element> page = service.findAll(pageNumber.orElse(1), sizeNumber.orElse(10));
+		Page<Element> page = service.findAll(pageNumber.orElse(1), sizeNumber.orElse(10), sortField.orElse("id"));
 		
 		model.addAttribute("currentPage",pageNumber.orElse(1));
 		model.addAttribute("totalPages",page.getTotalPages());
 		model.addAttribute("totalItems",page.getTotalElements());
+		model.addAttribute("sortField", sortField.orElse("id"));
 		
 		model.addAttribute("listElement", page.getContent());
 		return "listElement";
