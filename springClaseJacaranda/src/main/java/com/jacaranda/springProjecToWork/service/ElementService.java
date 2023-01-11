@@ -19,9 +19,14 @@ public class ElementService {
 		return repository.save(s);
 	}
 
-	public Page<Element> findAll(int pageNum, int pageSize, String sortField){
+	public Page<Element> findAll(int pageNum, int pageSize, String sortField, String stringFind){
 		Pageable pageable = PageRequest.of(pageNum -1, pageSize, Sort.by(sortField).ascending());
-		return repository.findAll(pageable);
+		if(stringFind == null) { //si es nulo busco todos los elementos
+			return repository.findAll(pageable);
+		}else { //muestra solo los que tengan ese nombre
+			return repository.findByNameLike('%' + stringFind + '%', pageable);
+		}
+		
 	}
 
 	public Element findById(int id) {

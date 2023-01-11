@@ -24,14 +24,16 @@ public class ElementController {
 	@GetMapping({"/","listElement"})
 	public String listElement(Model model, @RequestParam("pageNumber")Optional<Integer> pageNumber,
 	@RequestParam("sizeNumber") Optional<Integer> sizeNumber,
-	@RequestParam("sortField") Optional<String> sortField) {
+	@RequestParam("sortField") Optional<String> sortField,
+	@RequestParam("stringFind") Optional<String> stringFind) {
 		
-		Page<Element> page = service.findAll(pageNumber.orElse(1), sizeNumber.orElse(10), sortField.orElse("id"));
+		Page<Element> page = service.findAll(pageNumber.orElse(1), sizeNumber.orElse(10), sortField.orElse("id"), stringFind.orElse(null));
 		
 		model.addAttribute("currentPage",pageNumber.orElse(1));
 		model.addAttribute("totalPages",page.getTotalPages());
 		model.addAttribute("totalItems",page.getTotalElements());
 		model.addAttribute("sortField", sortField.orElse("id"));
+		model.addAttribute("keyword", stringFind.orElse(null));
 		
 		model.addAttribute("listElement", page.getContent());
 		return "listElement";

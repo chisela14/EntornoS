@@ -10,20 +10,31 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
 
-
 <title>Lista de Elementos</title>
+
+<script type="text/javascript">
+	function clearSearch() {
+	window.location = "[[@{/}]]";
+	}
+</script>
+
 </head>
 <body>
 
 <div class="container">
 	<nav class="navbar navbar-dark bg-primary">
-  		 <form class="form-inline">
-   			<a th:href="@{/}"><button type="button" class="btn btn-primary">Listado</button></a>
+  		 <form class="form-inline" th:action="@{/}">
+   			<a th:href="@{/?stringFind=}"><button type="button" class="btn btn-primary">Listado</button></a>
    			<a th:href="@{/addElement}"><button type="button" class="btn btn-primary">Añadir</button></a>
    			<button type="button" class="btn btn-primary"><span th:text=${#authentication.name}></span></button>
    			<a th:href="@{/logout}"><button type="button" class="btn btn-primary">Log Out</button></a>
- 
- 		 </form>
+ 		
+			Filter: <input type="text" name="stringFind" id="stringFind" size="50"
+				th:value="${keyword}" class="form-control input-md" placeholder="Búsqueda por nombre"/> &nbsp;
+			<input type="submit" value="Search" class="btn btn-primary"/> &nbsp; 
+			<input type="button" value="Clear" id="btnClear" onclick="clearSearch()" class="btn btn-primary"/> 
+
+		</form>
  	</nav>
 	
 	<div class="starter-template">
@@ -33,12 +44,12 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th><a th:href="@{'/listElement?sortField=id&&pageNumber=' + ${currentPage}}">ID</a></th>
-				<th><a th:href="@{'/listElement?sortField=name&&pageNumber=' + ${currentPage}}">NOMBRE</a></th>
-				<th><a th:href="@{'/listElement?sortField=description&&pageNumber=' + ${currentPage}}">DESCRIPCIÓN</a></th>
-				<th><a th:href="@{'/listElement?sortField=price&&pageNumber=' + ${currentPage}}">PRECIO</a></th>
-				<th><a th:href="@{'/listElement?sortField=stock&&pageNumber=' + ${currentPage}}">STOCK</a></th>
-				<th><a th:href="@{'/listElement?sortField=category&&pageNumber=' + ${currentPage}}">CATEGORIA</a></th>
+				<th><a th:href="@{'/listElement?sortField=id&&pageNumber=' + ${currentPage} + '&&stringFind=' + ${keyword}}">ID</a></th>
+				<th><a th:href="@{'/listElement?sortField=name&&pageNumber=' + ${currentPage}+ '&&stringFind=' + ${keyword}}">NOMBRE</a></th>
+				<th><a th:href="@{'/listElement?sortField=description&&pageNumber=' + ${currentPage}+ '&&stringFind=' + ${keyword}}">DESCRIPCIÓN</a></th>
+				<th><a th:href="@{'/listElement?sortField=price&&pageNumber=' + ${currentPage}+ '&&stringFind=' + ${keyword}}">PRECIO</a></th>
+				<th><a th:href="@{'/listElement?sortField=stock&&pageNumber=' + ${currentPage}+ '&&stringFind=' + ${keyword}}">STOCK</a></th>
+				<th><a th:href="@{'/listElement?sortField=category&&pageNumber=' + ${currentPage}+ '&&stringFind=' + ${keyword}}">CATEGORIA</a></th>
 				<th></th>
 			</tr>
 		</thead>
@@ -64,23 +75,23 @@
 	</table>
 
 	<div>
-		Total Items: <a th:text="${totalItems}" th:href="@{'/listElement?sizeNumber=' + ${totalItems}}"></a>
+		Total Items: <a th:text="${totalItems}" th:href="@{'/listElement?sizeNumber=' + ${totalItems}+ '&&stringFind=' + ${keyword}}"></a>
 		
-		<a th:if="${currentPage > 1}" th:href="@{'/listElement?pageNumber=1&&sortField=' + ${sortField}}"> First</a>
+		<a th:if="${currentPage > 1}" th:href="@{'/listElement?pageNumber=1&&sortField=' + ${sortField}+ '&&stringFind=' + ${keyword}}"> First</a>
 		<span th:unless="${currentPage > 1}">First</span>
 		
-		<a th:if="${currentPage > 1}" th:href="@{'/listElement?pageNumber=' + ${currentPage - 1}+ '&&sortField=' + ${sortField}}">Previous</a>
+		<a th:if="${currentPage > 1}" th:href="@{'/listElement?pageNumber=' + ${currentPage - 1}+ '&&sortField=' + ${sortField}+ '&&stringFind=' + ${keyword}}">Previous</a>
 		<span th:unless="${currentPage > 1}">Previous</span>
 		
 		<span th:each="i: ${#numbers.sequence(1, totalPages)}">
-			<a th:if="${currentPage != i}" th:href="@{'/listElement?pageNumber=' + ${i} + '&&sortField=' + ${sortField}}" th:text="${i}"></a>
+			<a th:if="${currentPage != i}" th:href="@{'/listElement?pageNumber=' + ${i} + '&&sortField=' + ${sortField} + '&&stringFind=' + ${keyword}}" th:text="${i}"></a>
 			<span th:unless="${currentPage != i}" th:text="${i}"></span>&nbsp;
 		</span>
 		
-		<a th:if="${currentPage < totalPages}" th:href="@{'/listElement?pageNumber=' + ${currentPage + 1}+ '&&sortField=' + ${sortField}}">Next</a>
+		<a th:if="${currentPage < totalPages}" th:href="@{'/listElement?pageNumber=' + ${currentPage + 1}+ '&&sortField=' + ${sortField} + '&&stringFind=' + ${keyword}}">Next</a>
 		<span th:unless="${currentPage < totalPages}">Next</span>
 		
-		<a th:if="${currentPage < totalPages}" th:href="@{'/listElement?pageNumber=' + ${totalPages}}+ '&&sortField=' + ${sortField}">Last</a>
+		<a th:if="${currentPage < totalPages}" th:href="@{'/listElement?pageNumber=' + ${totalPages} + '&&sortField=' + ${sortField} + '&&stringFind=' + ${keyword}}">Last</a>
 		<span th:unless="${currentPage < totalPages}">Last</span>
 		
 	</div>
